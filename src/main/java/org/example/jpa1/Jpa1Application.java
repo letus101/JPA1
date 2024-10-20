@@ -30,6 +30,12 @@ public class Jpa1Application implements CommandLineRunner {
         //afficher un produit par id
         Product p = productRepository.findById(1L).get();
         System.out.println(p.getId() + " " + p.getName() + " " + p.getPrice() + " " + p.getQuantity());
+        //chercher des produits par nom
+        List<Product> products1 = productRepository.findByName("Mouse");
+        products1.forEach(System.out::println);
+        //chercher des produits par nom et prix
+        List<Product> products3 = productRepository.findByNameAndPrice("PC", 3000.0);
+        products3.forEach(System.out::println);
         //metre à jour un produit
         Product p2 = productRepository.findById(1L).get();
         p2.setPrice(2000.0);

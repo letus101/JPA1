@@ -86,8 +86,11 @@ package org.example.jpa1.repositories;
 
 import org.example.jpa1.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+   List<Product> findByName(String name);
+   List<Product> findByNameAndPrice(String name, Double price);
 }
 ```
 
@@ -133,6 +136,14 @@ public class Jpa1Application implements CommandLineRunner {
         Product p = productRepository.findById(1L).orElseThrow();
         System.out.printf("ID: %d, Nom: %s, Prix: %.2f, Quantité: %d%n", 
                           p.getId(), p.getName(), p.getPrice(), p.getQuantity());
+
+       //chercher des produits par nom
+       List<Product> products1 = productRepository.findByName("Mouse");
+       products1.forEach(System.out::println);
+       
+       //chercher des produits par nom et prix
+       List<Product> products3 = productRepository.findByNameAndPrice("PC", 3000.0);
+       products3.forEach(System.out::println);
 
         // Mettre à jour un produit
         System.out.println("\nMise à jour d'un produit :");
