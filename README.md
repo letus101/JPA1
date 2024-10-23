@@ -1,4 +1,4 @@
-# JPA1 Project
+# JPA1 (Products) Project
 
 ## Créateur
 Youssef Ketaj
